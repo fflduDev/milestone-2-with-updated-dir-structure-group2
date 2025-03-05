@@ -1,5 +1,5 @@
 package template;
-
+//James Haimoff Push Test
 /**
  * model a Contact 
  * Contact has a name & list of phonebook entries
@@ -11,6 +11,6 @@ package template;
  */
 
 class Contact {
-	 
+	// public 
 
 }
