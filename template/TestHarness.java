@@ -8,6 +8,8 @@ import java.util.concurrent.TimeUnit;
 public class TestHarness {
 
 	// Contact overrides hashcode && equals.  Observe collision here.
+
+	//uncomment this later when needed...
 	private static Map<Contact, List<PhonebookEntry>> phonebook = new HashMap<>();
 	private static Contact p1, p2, p3, p4, p5;
 	private static PhonebookHandler phonebookHander;
@@ -16,6 +18,10 @@ public class TestHarness {
 	public static void main(String[] args) throws InterruptedException {
 		init();
 		
+		Contact c1 = new Contact("James");
+		c1.addPhonebookEntry("20000","Work");
+
+
 		//TODO: 2 cases:
 		//display non equality using your overriden equals method
 		//display equality using your overriden equals method
@@ -23,27 +29,28 @@ public class TestHarness {
 		TEST_Equals(p1, p2);
 		TEST_Equals(p3, p3);
 		
-		//TODO: 2 cases:
-		//display hashcode case that demonstrates collision
-		//display hashcode case that demonstrates non- collision
+		// //TODO: 2 cases:
+		// //display hashcode case that demonstrates collision
+		// //display hashcode case that demonstrates non- collision
 
 		TEST_hashcode(p1, p3);
 		TEST_hashcode(p2, p3);
 
-		//Create the phonebook handler
+		// //Create the phonebook handler
 		phonebookHander = new PhonebookHandler(phonebook);
 		
-		//TODO
-		//call 
+		// //TODO
+		// //call 
 		List<Contact> sortedContacts = TEST_Sort(phonebookHander);
 		TEST_Display(sortedContacts);
 		
-		//TODO
-		// 2 cases:
-		// 1) a call to search finds the user and displays their entries 
-		//(2) a call to search does not find the user & displays some detail illustrating same
+		// //TODO
+		// // 2 cases:
+		// // 1) a call to search finds the user and displays their entries 
+		// //(2) a call to search does not find the user & displays some detail illustrating same
+		// TEST_Search(phonebookHander, sortedContacts, "Juan");
 		TEST_Search(phonebookHander, sortedContacts, "Juan");
-		 
+		TEST_Search(phonebookHander, sortedContacts, "James");
 
 	}
 
@@ -87,7 +94,8 @@ public class TestHarness {
 			System.out.println("Hash matches - we're in the same bucket ( collision!): " + r1.hashCode());
 
 		} else {
-			System.out.println("NO hash match: " + r1.hashCode() + " / " + r2.hashCode());
+			System.out.println("NO hash match : " + r1.hashCode() + " / " + r2.hashCode());
+			System.out.println("Ascii char corespongin int values for comparison ^");
 
 		}
 		System.out.println();
@@ -106,9 +114,14 @@ public class TestHarness {
 	 */
 	public static void init() throws InterruptedException {
 
+
+		//get interfaces and implement the code for them, pretty simple
+
 		System.out.println("Building Contacts ....");
 		TimeUnit.SECONDS.sleep(1);
 
+		// p1 = new Contact("Man");
+		
 		p1 = new Contact("Jan");
 		p2 = new Contact("Stan");
 		p3 = new Contact("Juan");
